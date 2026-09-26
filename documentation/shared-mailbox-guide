@@ -47,6 +47,10 @@ Connect-ExchangeOnline
 Add-MailboxPermission -Identity "IT Support" `
     -User jane.doe@Delaware.onmicrosoft.com `
     -AccessRights FullAccess
+Get-MailboxPermission -Identity "IT Support"
+Get-RecipientPermission -Identity "IT Support"
+
+
 
 Add-RecipientPermission -Identity "IT Support" `
     -Trustee jane.doe@Delaware.onmicrosoft.com `
