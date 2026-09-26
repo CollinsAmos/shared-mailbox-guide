@@ -1,0 +1,53 @@
+# Project 3: Shared Mailbox & Distribution List Setup
+
+## Objective
+
+Create a shared mailbox with Full Access and Send As permissions, and set up a distribution list for organizational announcements.
+
+---
+
+## Part A: Create a Shared Mailbox
+
+### Step 1: Navigate to Exchange Admin Center
+
+**Path:** `Exchange Admin Center → Recipients → Mailboxes`
+
+### Step 2: Add a Shared Mailbox
+
+| Field | Value |
+|-------|-------|
+| Display name | IT Support |
+| Email address | ITSupport |
+| Domain | Delaware.onmicrosoft.com |
+| Alias | itsupport |
+
+Click **Create**.
+
+### Step 3: Verify
+
+The shared mailbox appears in the mailboxes list with Recipient type = **SharedMailbox**.
+
+**No license required** for shared mailboxes under 50 GB.
+
+---
+
+## Part B: Grant Permissions
+
+### Step 1: Add Members via EAC
+
+**Path:** `EAC → Mailboxes → IT Support → Mailbox delegation`
+
+Add team members (e.g., Francis Jobs, Jane Doe).
+
+### Step 2: Grant Permissions via PowerShell
+
+```powershell
+Connect-ExchangeOnline
+
+Add-MailboxPermission -Identity "IT Support" `
+    -User jane.doe@Delaware.onmicrosoft.com `
+    -AccessRights FullAccess
+
+Add-RecipientPermission -Identity "IT Support" `
+    -Trustee jane.doe@Delaware.onmicrosoft.com `
+    -AccessRights SendAs -Confirm:$false
